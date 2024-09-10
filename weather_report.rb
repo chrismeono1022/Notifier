@@ -1,3 +1,4 @@
+# To do: consolidate requirements into main
 require 'dotenv'
 Dotenv.load('keys.env')
 require 'uri'
@@ -6,7 +7,6 @@ require 'pry'
 require 'JSON'
 require 'Date'
 require 'dotenv/load'
-require 'aws-sdk-sns'
 # require './formatter'
 
 class Notifier
@@ -67,35 +67,17 @@ class Notifier
   end
 
   def fetch_data
-    binding.pry
-
     weather_hash = fetch_weather_forecast
 
     activity_hash = fetch_activity_forecast
+
+
+    puts weather_hash
+
+    puts activity_hash
   end
 end
-
-# class Message
-#   def initialize(phone_number, payload)
-#     @phone_number, @payload = phone_number, payload
-#   end
-
-#   def text
-#     sns = Aws::SNS::Client.new(
-#       access_key_id: ,
-#       secret_access_key:
-#     )
-#     response = sns.publish(
-#       {
-#         phone_number = phone_number
-#         message = payload
-#       }
-#     )
-#   end
-# end
 
 
 t = Notifier.new
 t.fetch_data
-
-
