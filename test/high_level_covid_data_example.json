@@ -1,0 +1,428 @@
+// https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateMap.json
+
+[
+  {
+  "State":"Alabama",
+  "state_abbrev":"AL",
+  "activity_level":"8",
+  "activity_level_label":"High",
+  "num_sites":"7",
+  "hatch":null
+  },
+  {
+  "State":"Alaska",
+  "state_abbrev":"AK",
+  "activity_level":"9",
+  "activity_level_label":"Very High",
+  "num_sites":"4",
+  "hatch":null
+  },
+  {
+  "State":"Arizona",
+  "state_abbrev":"AZ",
+  "activity_level":"No Data",
+  "activity_level_label":"No Data",
+  "num_sites":"0",
+  "hatch":null
+  },
+  {
+  "State":"Arkansas",
+  "state_abbrev":"AR",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"8",
+  "hatch":null
+  },
+  {
+  "State":"California",
+  "state_abbrev":"CA",
+  "activity_level":"8",
+  "activity_level_label":"High",
+  "num_sites":"41",
+  "hatch":null
+  },
+  {
+  "State":"Colorado",
+  "state_abbrev":"CO",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"18",
+  "hatch":null
+  },
+  {
+  "State":"Connecticut",
+  "state_abbrev":"CT",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"5",
+  "hatch":null
+  },
+  {
+  "State":"Delaware",
+  "state_abbrev":"DE",
+  "activity_level":"9",
+  "activity_level_label":"Very High",
+  "num_sites":"8",
+  "hatch":null
+  },
+  {
+  "State":"District of Columbia",
+  "state_abbrev":"DC",
+  "activity_level":"8",
+  "activity_level_label":"High",
+  "num_sites":"1",
+  "hatch":null
+  },
+  {
+  "State":"Florida",
+  "state_abbrev":"FL",
+  "activity_level":"9",
+  "activity_level_label":"Very High",
+  "num_sites":"19",
+  "hatch":null
+  },
+  {
+  "State":"Georgia",
+  "state_abbrev":"GA",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"8",
+  "hatch":null
+  },
+  {
+  "State":"Guam",
+  "state_abbrev":"GU",
+  "activity_level":"No Data",
+  "activity_level_label":"No Data",
+  "num_sites":"0",
+  "hatch":null
+  },
+  {
+  "State":"Hawaii",
+  "state_abbrev":"HI",
+  "activity_level":"6",
+  "activity_level_label":"Moderate",
+  "num_sites":"9",
+  "hatch":null
+  },
+  {
+  "State":"Idaho",
+  "state_abbrev":"ID",
+  "activity_level":"8",
+  "activity_level_label":"High",
+  "num_sites":"4",
+  "hatch":null
+  },
+  {
+  "State":"Illinois",
+  "state_abbrev":"IL",
+  "activity_level":"8",
+  "activity_level_label":"High",
+  "num_sites":"72",
+  "hatch":null
+  },
+  {
+  "State":"Indiana",
+  "state_abbrev":"IN",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"21",
+  "hatch":null
+  },
+  {
+  "State":"Iowa",
+  "state_abbrev":"IA",
+  "activity_level":"9",
+  "activity_level_label":"Very High",
+  "num_sites":"9",
+  "hatch":null
+  },
+  {
+  "State":"Kansas",
+  "state_abbrev":"KS",
+  "activity_level":"9",
+  "activity_level_label":"Very High",
+  "num_sites":"13",
+  "hatch":null
+  },
+  {
+  "State":"Kentucky",
+  "state_abbrev":"KY",
+  "activity_level":"9",
+  "activity_level_label":"Very High",
+  "num_sites":"13",
+  "hatch":null
+  },
+  {
+  "State":"Louisiana",
+  "state_abbrev":"LA",
+  "activity_level":"9",
+  "activity_level_label":"Very High",
+  "num_sites":"8",
+  "hatch":null
+  },
+  {
+  "State":"Maine",
+  "state_abbrev":"ME",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"14",
+  "hatch":null
+  },
+  {
+  "State":"Maryland",
+  "state_abbrev":"MD",
+  "activity_level":"8",
+  "activity_level_label":"High",
+  "num_sites":"10",
+  "hatch":null
+  },
+  {
+  "State":"Massachusetts",
+  "state_abbrev":"MA",
+  "activity_level":"8",
+  "activity_level_label":"High",
+  "num_sites":"6",
+  "hatch":null
+  },
+  {
+  "State":"Michigan",
+  "state_abbrev":"MI",
+  "activity_level":"5",
+  "activity_level_label":"Moderate",
+  "num_sites":"42",
+  "hatch":null
+  },
+  {
+  "State":"Minnesota",
+  "state_abbrev":"MN",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"32",
+  "hatch":null
+  },
+  {
+  "State":"Mississippi",
+  "state_abbrev":"MS",
+  "activity_level":"5",
+  "activity_level_label":"Moderate",
+  "num_sites":"2",
+  "hatch":"Limited Coverage"
+  },
+  {
+  "State":"Missouri",
+  "state_abbrev":"MO",
+  "activity_level":"8",
+  "activity_level_label":"High",
+  "num_sites":"46",
+  "hatch":null
+  },
+  {
+  "State":"Montana",
+  "state_abbrev":"MT",
+  "activity_level":"5",
+  "activity_level_label":"Moderate",
+  "num_sites":"6",
+  "hatch":null
+  },
+  {
+  "State":"Nebraska",
+  "state_abbrev":"NE",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"16",
+  "hatch":null
+  },
+  {
+  "State":"Nevada",
+  "state_abbrev":"NV",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"1",
+  "hatch":null
+  },
+  {
+  "State":"New Hampshire",
+  "state_abbrev":"NH",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"12",
+  "hatch":null
+  },
+  {
+  "State":"New Jersey",
+  "state_abbrev":"NJ",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"18",
+  "hatch":null
+  },
+  {
+  "State":"New Mexico",
+  "state_abbrev":"NM",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"2",
+  "hatch":null
+  },
+  {
+  "State":"New York",
+  "state_abbrev":"NY",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"114",
+  "hatch":null
+  },
+  {
+  "State":"North Carolina",
+  "state_abbrev":"NC",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"34",
+  "hatch":null
+  },
+  {
+  "State":"North Dakota",
+  "state_abbrev":"ND",
+  "activity_level":"No Data",
+  "activity_level_label":"No Data",
+  "num_sites":"0",
+  "hatch":null
+  },
+  {
+  "State":"Ohio",
+  "state_abbrev":"OH",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"69",
+  "hatch":null
+  },
+  {
+  "State":"Oklahoma",
+  "state_abbrev":"OK",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"13",
+  "hatch":null
+  },
+  {
+  "State":"Oregon",
+  "state_abbrev":"OR",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"6",
+  "hatch":null
+  },
+  {
+  "State":"Pennsylvania",
+  "state_abbrev":"PA",
+  "activity_level":"8",
+  "activity_level_label":"High",
+  "num_sites":"29",
+  "hatch":null
+  },
+  {
+  "State":"Rhode Island",
+  "state_abbrev":"RI",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"9",
+  "hatch":null
+  },
+  {
+  "State":"South Carolina",
+  "state_abbrev":"SC",
+  "activity_level":"9",
+  "activity_level_label":"Very High",
+  "num_sites":"19",
+  "hatch":null
+  },
+  {
+  "State":"South Dakota",
+  "state_abbrev":"SD",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"2",
+  "hatch":"Limited Coverage"
+  },
+  {
+  "State":"Tennessee",
+  "state_abbrev":"TN",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"4",
+  "hatch":null
+  },
+  {
+  "State":"Texas",
+  "state_abbrev":"TX",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"30",
+  "hatch":null
+  },
+  {
+  "State":"Utah",
+  "state_abbrev":"UT",
+  "activity_level":"9",
+  "activity_level_label":"Very High",
+  "num_sites":"31",
+  "hatch":null
+  },
+  {
+  "State":"Vermont",
+  "state_abbrev":"VT",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"4",
+  "hatch":null
+  },
+  {
+  "State":"Virgin Islands",
+  "state_abbrev":"VI",
+  "activity_level":"No Data",
+  "activity_level_label":"No Data",
+  "num_sites":"0",
+  "hatch":null
+  },
+  {
+  "State":"Virginia",
+  "state_abbrev":"VA",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"30",
+  "hatch":null
+  },
+  {
+  "State":"Washington",
+  "state_abbrev":"WA",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"29",
+  "hatch":null
+  },
+  {
+  "State":"West Virginia",
+  "state_abbrev":"WV",
+  "activity_level":"7",
+  "activity_level_label":"High",
+  "num_sites":"13",
+  "hatch":null
+  },
+  {
+  "State":"Wisconsin",
+  "state_abbrev":"WI",
+  "activity_level":"8",
+  "activity_level_label":"High",
+  "num_sites":"34",
+  "hatch":null
+  },
+  {
+  "State":"Wyoming",
+  "state_abbrev":"WY",
+  "activity_level":"10",
+  "activity_level_label":"Very High",
+  "num_sites":"2",
+  "hatch":null
+  }
+]
