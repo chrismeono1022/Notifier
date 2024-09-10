@@ -1,0 +1,676 @@
+// http://dataservice.accuweather.com/indices/v1/daily/1day/#{location}
+
+[
+    {
+        "Name":"Flight Delays",
+        "ID":-3,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":10.0,
+        "Category":"Very Unlikely",
+        "CategoryValue":5,
+        "Text":"Conditions are excellent for flying!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/air-travel-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/air-travel-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Indoor Activity Forecast",
+        "ID":-2,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.8,
+        "Category":"Poor",
+        "CategoryValue":1,
+        "Text":"Expect poor conditions for indoor activities.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Running Forecast",
+        "ID":1,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.0,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is an excellent day for outdoor running!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/running-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/running-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Jogging Forecast",
+        "ID":2,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.2,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"Conditions are excellent for jogging outdoors!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Hiking Forecast",
+        "ID":3,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.6,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"Conditions are excellent for hiking!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/hiking-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/hiking-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Bicycling Forecast",
+        "ID":4,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.6,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"Conditions are excellent for bicycling outdoors!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/biking-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/biking-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Golf Weather Forecast",
+        "ID":5,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":10.0,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is a great day for golf.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/golf-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/golf-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Tennis Forecast",
+        "ID":6,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.0,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is an excellent day for playing tennis!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Skateboarding Forecast",
+        "ID":7,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.7,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is an excellent day for skateboarding!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Outdoor Concert Forecast",
+        "ID":8,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.0,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"Conditions are excellent for attending an outdoor concert!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Kite Flying Forecast",
+        "ID":9,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":8.9,
+        "Category":"Very Good",
+        "CategoryValue":4,
+        "Text":"Conditions are very good today for kite-flying.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Beach &amp; Pool Forecast",
+        "ID":10,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":6.7,
+        "Category":"Good",
+        "CategoryValue":3,
+        "Text":"Conditions will be good for a visit to the beach or pool.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/sun-sand-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/sun-sand-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Sailing Forecast",
+        "ID":11,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":8.3,
+        "Category":"Very Good",
+        "CategoryValue":4,
+        "Text":"Conditions will be very good for sailing.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Stargazing Forecast",
+        "ID":12,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.0,
+        "Category":"Poor",
+        "CategoryValue":1,
+        "Text":"Expect poor conditions for stargazing.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/astronomy-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/astronomy-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Fishing Forecast",
+        "ID":13,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":10.0,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is a great day for fishing.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/fishing-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/fishing-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Construction Forecast",
+        "ID":14,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.8,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is a great day for outside construction projects!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Ski Weather Forecast",
+        "ID":15,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.0,
+        "Category":"Poor",
+        "CategoryValue":1,
+        "Text":"Expect poor conditions for skiing.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Healthy Heart Fitness Forecast",
+        "ID":16,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":10.0,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is a great day for outdoor exercise!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Mosquito Activity Forecast",
+        "ID":17,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":5.0,
+        "Category":"High",
+        "CategoryValue":3,
+        "Text":"The weather is favorable for a high level of mosquito activity. Plan activities and insect repellents accordingly.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/mosquito-activity-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/mosquito-activity-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Dust &amp; Dander Forecast",
+        "ID":18,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.0,
+        "Category":"Low",
+        "CategoryValue":1,
+        "Text":"Indoor dust and dander levels will be low.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/allergies-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/allergies-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Snow Days Forecast",
+        "ID":19,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.0,
+        "Category":"Very Unlikely",
+        "CategoryValue":1,
+        "Text":"School is very unlikely to be closed today.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Hunting Forecast",
+        "ID":20,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":7.6,
+        "Category":"Very Good",
+        "CategoryValue":4,
+        "Text":"Conditions will be very good for hunting.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Arthritis Pain Forecast",
+        "ID":21,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":2.5,
+        "Category":"Neutral",
+        "CategoryValue":2,
+        "Text":"The weather will not significantly impact the risk of arthritis pain, nor its severity or duration.",
+         "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/arthritis-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/arthritis-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Arthritis Pain Forecast",
+        "ID":22,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":4.5,
+        "Category":"At Risk",
+        "CategoryValue":3,
+        "Text":"There is a risk of weather-related arthritis pain. Plan activities accordingly.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/arthritis-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/arthritis-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Asthma Forecast",
+        "ID":23,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.2,
+        "Category":"Beneficial",
+        "CategoryValue":1,
+        "Text":"Weather conditions create a lowered risk of weather-related asthma attacks, and will help to make attacks less severe and of shorter duration.",
+         "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/asthma-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/asthma-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Outdoor Barbecue",
+        "ID":24,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":8.2,
+        "Category":"Very Good",
+        "CategoryValue":4,
+        "Text":"Conditions will be very good for an outdoor barbecue.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/outdoor-entertaining-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/outdoor-entertaining-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Common Cold Forecast",
+        "ID":25,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.2,
+        "Category":"Beneficial",
+        "CategoryValue":1,
+        "Text":"Weather conditions create a lowered risk of catching a cold, and will help to make colds less severe and of shorter duration.",
+         "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/cold-flu-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/cold-flu-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Flu Forecast",
+        "ID":26,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.1,
+        "Category":"Beneficial",
+        "CategoryValue":1,
+        "Text":"Weather conditions create a lowered risk of catching the flu, and will help to make a case of the flu less severe and of shorter duration.",
+         "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Migraine Headache Forecast",
+        "ID":27,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.0,
+        "Category":"Beneficial",
+        "CategoryValue":1,
+        "Text":"Weather conditions create a lowered risk of a migraine headache, and will help to make a headache less severe and of shorter duration.",
+         "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/migraine-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/migraine-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Lawn Mowing Forecast",
+        "ID":28,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.3,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is a great day for lawn mowing!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/lawn-garden-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/lawn-garden-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Outdoor Activity Forecast",
+        "ID":29,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.2,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is a great day for outdoor activities!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/outdoor-entertaining-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/outdoor-entertaining-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Sinus Headache Forecast",
+        "ID":30,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.5,
+        "Category":"Beneficial",
+        "CategoryValue":1,
+        "Text":"Weather conditions create a lowered risk of a sinus headache, and will help to make a headache less severe and of shorter duration.",
+         "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/sinus-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/sinus-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Flying Travel Index",
+        "ID":31,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.0,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"Conditions are excellent for flying!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/air-travel-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/air-travel-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Morning School Bus Forecast",
+        "ID":35,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":10.0,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"The weather will be great at the school bus stop this morning!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Home Energy Efficiency Forecast",
+        "ID":36,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.0,
+        "Category":"Poor",
+        "CategoryValue":1,
+        "Text":"Expect poor weather conditions for home energy efficiency.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Fuel Economy Forecast",
+        "ID":37,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.4,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"Weather conditions will be excellent for fuel economy.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Composting Forecast",
+        "ID":38,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":7.0,
+        "Category":"Very Good",
+        "CategoryValue":4,
+        "Text":"Weather conditions will be very good for composting.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Shopping Forecast",
+        "ID":39,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.0,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is a great day for shopping!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Driving Travel Index",
+        "ID":40,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.6,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is an excellent day for driving!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/driving-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/driving-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Thirst Forecast, brought to you by Country Time",
+         "ID":41,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":7.0,
+        "Category":"Very High",
+        "CategoryValue":4,
+        "Text":"The weather is favorable for a very high level of dehydration. Plan activities accordingly and be sure to drink plenty of fluids.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Hair Frizz Forecast",
+        "ID":42,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.0,
+        "Category":"Unlikely",
+        "CategoryValue":1,
+        "Text":"Frizz is unlikely for all hair types.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Dog Walking Comfort Forecast",
+        "ID":43,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":9.3,
+        "Category":"Excellent",
+        "CategoryValue":5,
+        "Text":"This is a great day for walking your dog!",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"COPD Forecast",
+        "ID":44,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":1.7,
+        "Category":"Beneficial",
+        "CategoryValue":1,
+        "Text":"The risk of a pulmonary attack due to weather conditions is low.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"AccuLumen Brightness Index™ Forecast",
+        "ID":47,
+        "Ascending":false,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":7.0,
+        "Category":"Bright",
+        "CategoryValue":4,
+        "Text":null,
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Dry Skin Forecast",
+        "ID":48,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":5.0,
+        "Category":"Possibly",
+        "CategoryValue":3,
+        "Text":"Periods of weather that promote dry skin can be expected.  It may require occasional skincare adjustments for prevention.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Makeup and Skincare Forecast",
+        "ID":49,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":4.0,
+        "Category":"Moisturizers",
+        "CategoryValue":2,
+        "Text":"It is advisable to opt for nourishing cosmetics like lip balms or hydrating creams to combat dryness and maintain skin hydration throughout the day.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/health-activities/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Clothes Drying Forecast",
+        "ID":50,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":4.0,
+        "Category":"Fair",
+        "CategoryValue":2,
+        "Text":"Weather conditions are somewhat favorable for drying clothes outdoors.  Consider bringing your clothes inside if precipitation intensifies or winds pick up.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/outdoor-entertaining-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/outdoor-entertaining-weather/40924_PC?lang=en-us"
+    },
+
+    {
+        "Name":"Carwashing Forecast",
+        "ID":51,
+        "Ascending":true,
+        "LocalDateTime":"2024-09-10T07:00:00-07:00",
+        "EpochDateTime":1725976800,
+        "Value":0.0,
+        "Category":"Poor",
+        "CategoryValue":1,
+        "Text":"Weather conditions are unfavorable for carwashing.  It is advisable to avoid carwashing as it may result in ineffective cleaning.",
+        "MobileLink":"http://www.accuweather.com/en/us/portland-or/97204/outdoor-entertaining-weather/40924_PC?lang=en-us",
+        "Link":"http://www.accuweather.com/en/us/portland-or/97204/outdoor-entertaining-weather/40924_PC?lang=en-us"
+    }
+]
+

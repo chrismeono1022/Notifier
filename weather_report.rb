@@ -18,6 +18,7 @@ class WeatherReport
   def fetch_weather_forecast
     url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/#{@location}"
     res_body = fetch_api_data(url)
+
     body = res_body[:DailyForecasts].first
 
     parse_weather_forecast(body)
@@ -29,7 +30,9 @@ class WeatherReport
     temp_max = body[:Temperature][:Maximum][:Value]
     temp_min = body[:Temperature][:Minimum][:Value]
     pollens = []
-    raw_pollens = body[:AirAndPollen].each { |i| pollens.push(i.slice(:Name, :Category))}
+    raw_pollens = body[:AirAndPollen].each {
+      |i| pollens.push(i.slice(:Name, :Category))
+    }
 
     {
       date: "Today's forecast: #{date}",
@@ -48,7 +51,10 @@ class WeatherReport
   end
 
   def parse_activity_forecast(body)
-    keys_of_interest = ['Mosquito Activity Forecast', 'Dust & Dander Forecast', 'Arthritis Pain Forecast', 'Flu Forecast', 'Sinus Headache Forecast', 'Driving Travel Index', 'Hair Frizz Forecast', 'Dog Walking Comfort Forecast', 'Makeup and Skincare Forecast']
+    keys_of_interest = ['Mosquito Activity Forecast', 'Dust & Dander Forecast',
+      'Arthritis Pain Forecast', 'Flu Forecast', 'Sinus Headache Forecast',
+      'Driving Travel Index', 'Hair Frizz Forecast',
+      'Dog Walking Comfort Forecast', 'Makeup and Skincare Forecast']
 
     formatted_data = {}
 

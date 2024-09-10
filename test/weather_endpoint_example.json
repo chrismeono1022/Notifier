@@ -1,0 +1,276 @@
+// "https://dataservice.accuweather.com/forecasts/v1/daily/1day/#{location}"
+
+{
+    "Headline": {
+        "EffectiveDate": "2023-11-15T16:00:00-08:00",
+        "EffectiveEpochDate": 1700092800,
+        "Severity": 5,
+        "Text": "Expect showers late this afternoon",
+        "Category": "rain",
+        "EndDate": "2023-11-15T22:00:00-08:00",
+        "EndEpochDate": 1700114400,
+        "MobileLink": "http://www.accuweather.com/en/us/portland-or/97204/daily-weather-forecast/40924_pc?lang=en-us",
+        "Link": "http://www.accuweather.com/en/us/portland-or/97204/daily-weather-forecast/40924_pc?lang=en-us"
+    },
+    "DailyForecasts": [
+        {
+            "Date": "2023-11-15T07:00:00-08:00",
+            "EpochDate": 1700060400,
+            "Sun": {
+                "Rise": "2023-11-15T07:10:00-08:00",
+                "EpochRise": 1700061000,
+                "Set": "2023-11-15T16:40:00-08:00",
+                "EpochSet": 1700095200
+            },
+            "Moon": {
+                "Rise": "2023-11-15T10:07:00-08:00",
+                "EpochRise": 1700071620,
+                "Set": "2023-11-15T18:04:00-08:00",
+                "EpochSet": 1700100240,
+                "Phase": "WaxingCrescent",
+                "Age": 2
+            },
+            "Temperature": {
+                "Minimum": {
+                    "Value": 39.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 52.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "RealFeelTemperature": {
+                "Minimum": {
+                    "Value": 36.0,
+                    "Unit": "F",
+                    "UnitType": 18,
+                    "Phrase": "Cold"
+                },
+                "Maximum": {
+                    "Value": 55.0,
+                    "Unit": "F",
+                    "UnitType": 18,
+                    "Phrase": "Cool"
+                }
+            },
+            "RealFeelTemperatureShade": {
+                "Minimum": {
+                    "Value": 36.0,
+                    "Unit": "F",
+                    "UnitType": 18,
+                    "Phrase": "Cold"
+                },
+                "Maximum": {
+                    "Value": 55.0,
+                    "Unit": "F",
+                    "UnitType": 18,
+                    "Phrase": "Cool"
+                }
+            },
+            "HoursOfSun": 1.7,
+            "DegreeDaySummary": {
+                "Heating": {
+                    "Value": 20.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Cooling": {
+                    "Value": 0.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "AirAndPollen": [
+                {
+                    "Name": "AirQuality",
+                    "Value": 70,
+                    "Category": "Moderate",
+                    "CategoryValue": 2,
+                    "Type": "Ozone"
+                },
+                {
+                    "Name": "Grass",
+                    "Value": 1,
+                    "Category": "Low",
+                    "CategoryValue": 1
+                },
+                {
+                    "Name": "Mold",
+                    "Value": 0,
+                    "Category": "Low",
+                    "CategoryValue": 1
+                },
+                {
+                    "Name": "Ragweed",
+                    "Value": 1,
+                    "Category": "Low",
+                    "CategoryValue": 1
+                },
+                {
+                    "Name": "Tree",
+                    "Value": 0,
+                    "Category": "Low",
+                    "CategoryValue": 1
+                },
+                {
+                    "Name": "UVIndex",
+                    "Value": 1,
+                    "Category": "Low",
+                    "CategoryValue": 1
+                }
+            ],
+            "Day": {
+                "Icon": 13,
+                "IconPhrase": "Mostly cloudy w/ showers",
+                "HasPrecipitation": true,
+                "PrecipitationType": "Rain",
+                "PrecipitationIntensity": "Light",
+                "ShortPhrase": "A stray afternoon shower",
+                "LongPhrase": "A thick cloud cover this morning, then clouds and sun this afternoon with a shower in places",
+                "PrecipitationProbability": 49,
+                "ThunderstormProbability": 10,
+                "RainProbability": 49,
+                "SnowProbability": 0,
+                "IceProbability": 0,
+                "Wind": {
+                    "Speed": {
+                        "Value": 2.3,
+                        "Unit": "mi/h",
+                        "UnitType": 9
+                    },
+                    "Direction": {
+                        "Degrees": 351,
+                        "Localized": "N",
+                        "English": "N"
+                    }
+                },
+                "WindGust": {
+                    "Speed": {
+                        "Value": 9.2,
+                        "Unit": "mi/h",
+                        "UnitType": 9
+                    },
+                    "Direction": {
+                        "Degrees": 3,
+                        "Localized": "N",
+                        "English": "N"
+                    }
+                },
+                "TotalLiquid": {
+                    "Value": 0.0,
+                    "Unit": "in",
+                    "UnitType": 1
+                },
+                "Rain": {
+                    "Value": 0.0,
+                    "Unit": "in",
+                    "UnitType": 1
+                },
+                "Snow": {
+                    "Value": 0.0,
+                    "Unit": "in",
+                    "UnitType": 1
+                },
+                "Ice": {
+                    "Value": 0.0,
+                    "Unit": "in",
+                    "UnitType": 1
+                },
+                "HoursOfPrecipitation": 0.5,
+                "HoursOfRain": 0.5,
+                "HoursOfSnow": 0.0,
+                "HoursOfIce": 0.0,
+                "CloudCover": 87,
+                "Evapotranspiration": {
+                    "Value": 0.02,
+                    "Unit": "in",
+                    "UnitType": 1
+                },
+                "SolarIrradiance": {
+                    "Value": 376.3,
+                    "Unit": "W/m²",
+                    "UnitType": 33
+                }
+            },
+            "Night": {
+                "Icon": 34,
+                "IconPhrase": "Mostly clear",
+                "HasPrecipitation": false,
+                "ShortPhrase": "Mainly clear",
+                "LongPhrase": "Mainly clear",
+                "PrecipitationProbability": 6,
+                "ThunderstormProbability": 0,
+                "RainProbability": 6,
+                "SnowProbability": 0,
+                "IceProbability": 0,
+                "Wind": {
+                    "Speed": {
+                        "Value": 5.8,
+                        "Unit": "mi/h",
+                        "UnitType": 9
+                    },
+                    "Direction": {
+                        "Degrees": 356,
+                        "Localized": "N",
+                        "English": "N"
+                    }
+                },
+                "WindGust": {
+                    "Speed": {
+                        "Value": 6.9,
+                        "Unit": "mi/h",
+                        "UnitType": 9
+                    },
+                    "Direction": {
+                        "Degrees": 359,
+                        "Localized": "N",
+                        "English": "N"
+                    }
+                },
+                "TotalLiquid": {
+                    "Value": 0.0,
+                    "Unit": "in",
+                    "UnitType": 1
+                },
+                "Rain": {
+                    "Value": 0.0,
+                    "Unit": "in",
+                    "UnitType": 1
+                },
+                "Snow": {
+                    "Value": 0.0,
+                    "Unit": "in",
+                    "UnitType": 1
+                },
+                "Ice": {
+                    "Value": 0.0,
+                    "Unit": "in",
+                    "UnitType": 1
+                },
+                "HoursOfPrecipitation": 0.0,
+                "HoursOfRain": 0.0,
+                "HoursOfSnow": 0.0,
+                "HoursOfIce": 0.0,
+                "CloudCover": 27,
+                "Evapotranspiration": {
+                    "Value": 0.0,
+                    "Unit": "in",
+                    "UnitType": 1
+                },
+                "SolarIrradiance": {
+                    "Value": 0.0,
+                    "Unit": "W/m²",
+                    "UnitType": 33
+                }
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/us/portland-or/97204/daily-weather-forecast/40924_pc?day=1&lang=en-us",
+            "Link": "http://www.accuweather.com/en/us/portland-or/97204/daily-weather-forecast/40924_pc?day=1&lang=en-us"
+        }
+    ]
+}
