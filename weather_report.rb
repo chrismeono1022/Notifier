@@ -1,24 +1,26 @@
-# To do: consolidate requirements into main
-require 'dotenv'
-Dotenv.load('keys.env')
-require 'uri'
-require 'net/http'
-require 'pry'
-require 'JSON'
-require 'Date'
-require 'dotenv/load'
-# require './formatter'
+require_relative 'lib/utils'
 
-class Notifier
-  def fetch_api_data(endpoint)
-    # wrap in rescue clause
-    url = URI(endpoint)
-    params = { apikey: ENV['ACCUWEATHER_API_KEY'], details: true }
+attr :location, :weather_data, :activity_data
 
-    url.query = URI.encode_www_form(params)
+class WeatherReport
+  def initialize(location)
+    @location = location
+  end
 
-    res = Net::HTTP.get_response(url)
-    JSON.parse(res.body, symbolize_names: true)
+  def create_weather_report
+    @weather_data = fetch_weather_forecast
+
+    @activity_data = fetch_activity_forecast
+  end
+
+  private
+
+  def fetch_weather_forecast
+    url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/#{@location}"
+    res_body = fetch_api_data(url)
+    body = res_body[:DailyForecasts].first
+
+    parse_weather_forecast(body)
   end
 
   def parse_weather_forecast(body)
@@ -38,6 +40,13 @@ class Notifier
       }
   end
 
+  def fetch_activity_forecast
+    url = "http://dataservice.accuweather.com/indices/v1/daily/1day/#{@location}"
+    res_body = fetch_api_data(url)
+
+    parse_activity_forecast(res_body)
+  end
+
   def parse_activity_forecast(body)
     keys_of_interest = ['Mosquito Activity Forecast', 'Dust & Dander Forecast', 'Arthritis Pain Forecast', 'Flu Forecast', 'Sinus Headache Forecast', 'Driving Travel Index', 'Hair Frizz Forecast', 'Dog Walking Comfort Forecast', 'Makeup and Skincare Forecast']
 
@@ -50,34 +59,14 @@ class Notifier
     formatted_data.transform_keys { |k| k.downcase.tr(' ', '_').to_sym}
   end
 
-  def fetch_activity_forecast
-    url = 'http://dataservice.accuweather.com/indices/v1/daily/1day/40924_PC'
-    res_body = fetch_api_data(url)
+  def fetch_api_data(endpoint)
+    url = URI(endpoint)
+    params = { apikey: ENV['ACCUWEATHER_API_KEY'], details: true }
 
-    parse_activity_forecast(res_body)
+    url.query = URI.encode_www_form(params)
+
+    res = Net::HTTP.get_response(url)
+    JSON.parse(res.body, symbolize_names: true)
   end
 
-  # 45.5296, -122.6463 lat, long
-  def fetch_weather_forecast
-    url = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day/40924_PC'
-    res_body = fetch_api_data(url)
-    body = res_body[:DailyForecasts].first
-
-    parse_weather_forecast(body)
-  end
-
-  def fetch_data
-    weather_hash = fetch_weather_forecast
-
-    activity_hash = fetch_activity_forecast
-
-
-    puts weather_hash
-
-    puts activity_hash
-  end
 end
-
-
-t = Notifier.new
-t.fetch_data
