@@ -1,4 +1,4 @@
-Whoopsrequire_relative 'lib/utils'
+require_relative 'lib/utils'
 
 class CovidReport
 
@@ -8,7 +8,7 @@ class CovidReport
     @state = state
     @state_level_data = {}
     @circulating_variants = {}
-    @comparison_data = {}
+    @comparison_data = []
   end
 
   def fetch_state_level_data
@@ -36,13 +36,24 @@ class CovidReport
     @circulating_variants[:variants] = variants.sort_by { |i| i.value }
   end
 
-  # wip: slow endpoint, lots of data, filter out the noise
   def fetch_comparison_data
-    url = URI('https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateLevel.json')
+    data = fetch_cdc_data('https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateLevel.json')
 
-    res = Net::HTTP.get_response(url)
+    last_two_weeks = data.select { |i| i[:State] == @state }.last(8)
 
-    @comparison_data = JSON.parse(res.body.gsub("\xEF\xBB\xBF", ''), symbolize_names: true)
+    last_two_weeks.select { |k, v| k[:date_period] == 'All Results'}
+
+    last_two_weeks.select do |k, v|
+      if k[:date_period] == 'All Results'
+        @comparison_data << OpenStruct.new(
+          date: k[:date],
+          state_value: k[:state_med_conc].to_f.truncate(2),
+          region_value: k[:region_value].to_f.truncate(2),
+          national_value: k[:national_value].to_f.truncate(2),
+          activity_level: k[:activity_level_label]
+        )
+      end
+    end
   end
 
   private
