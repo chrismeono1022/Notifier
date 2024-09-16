@@ -1,19 +1,20 @@
 require_relative 'lib/utils'
 
-attr :location, :weather_data, :activity_data
-
 class WeatherReport
+
+  attr :location, :weather_data, :activity_data
+
   def initialize(location)
     @location = location
+    @weather_data = {}
+    @activity_data = {}
   end
 
   def create_weather_report
-    @weather_data = fetch_weather_forecast
+    fetch_weather_forecast
 
-    @activity_data = fetch_activity_forecast
+    fetch_activity_forecast
   end
-
-  private
 
   def fetch_weather_forecast
     url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/#{@location}"
@@ -21,8 +22,17 @@ class WeatherReport
 
     body = res_body[:DailyForecasts].first
 
-    parse_weather_forecast(body)
+    @weather_data = parse_weather_forecast(body)
   end
+
+  def fetch_activity_forecast
+    url = "http://dataservice.accuweather.com/indices/v1/daily/1day/#{@location}"
+    res_body = fetch_api_data(url)
+
+    @activity_data = parse_activity_forecast(res_body)
+  end
+
+  private
 
   def parse_weather_forecast(body)
     date = DateTime.strptime(body[:Date]).strftime("%a %-m/%-d/%-y")
@@ -41,13 +51,6 @@ class WeatherReport
       low: "Low: #{temp_min}",
 
       }
-  end
-
-  def fetch_activity_forecast
-    url = "http://dataservice.accuweather.com/indices/v1/daily/1day/#{@location}"
-    res_body = fetch_api_data(url)
-
-    parse_activity_forecast(res_body)
   end
 
   def parse_activity_forecast(body)
@@ -74,5 +77,4 @@ class WeatherReport
     res = Net::HTTP.get_response(url)
     JSON.parse(res.body, symbolize_names: true)
   end
-
 end

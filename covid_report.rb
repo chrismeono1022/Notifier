@@ -11,6 +11,12 @@ class CovidReport
     @comparison_data = []
   end
 
+  def create_covid_report
+    fetch_state_level_data
+    fetch_circulating_variants
+    fetch_comparison_data
+  end
+
   def fetch_state_level_data
 
     data = fetch_cdc_data('https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateMap.json')
