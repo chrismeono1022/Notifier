@@ -39,26 +39,26 @@ class CovidReport
   def fetch_comparison_data
     data = fetch_cdc_data('https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateLevel.json')
 
-    last_two_weeks = data.select { |i| i[:State] == @state }.last(8)
+    most_recent_data = []
 
-    last_two_weeks.select { |k, v| k[:date_period] == 'All Results'}
-
-    last_two_weeks.select do |k, v|
-      if k[:date_period] == 'All Results'
-        @comparison_data << OpenStruct.new(
-          date: k[:date],
-          state_value: k[:state_med_conc].to_f.truncate(2),
-          region_value: k[:region_value].to_f.truncate(2),
-          national_value: k[:national_value].to_f.truncate(2),
-          activity_level: k[:activity_level_label]
-        )
-      end
+    data.select { |k|
+      k[:State] == @state && k[:date_period] == '6 Months'
+    }.each do | k |
+      most_recent_data << OpenStruct.new(
+        date: Date.parse(k[:date]).strftime("%a %m/%d/%y"),
+        state_value: k[:state_med_conc].to_f.truncate(2),
+        region_value: k[:region_value].to_f.truncate(2),
+        national_value: k[:national_value].to_f.truncate(2),
+        activity_level: k[:activity_level_label]
+      )
     end
+
+    @comparison_data = most_recent_data.sort_by { |k| k.date }.last(2)
   end
 
   private
 
-  # JSON responses for this API include BOM characters and need to be stripped before parsing
+  # Strip BOM characters before parsing
   def fetch_cdc_data(url)
     url = URI(url)
 
