@@ -2,18 +2,21 @@ require_relative 'lib/utils'
 
 class WeatherReport
 
-  attr :location, :weather_data, :activity_data
+  attr :location, :weather_data, :activity_data, :display_data
 
   def initialize(location)
     @location = location
     @weather_data = {}
     @activity_data = {}
+    @display_data = {}
   end
 
   def create_weather_report
     fetch_weather_forecast
 
     fetch_activity_forecast
+
+    format_for_display
   end
 
   def fetch_weather_forecast
@@ -32,23 +35,37 @@ class WeatherReport
     @activity_data = parse_activity_forecast(res_body)
   end
 
+  def format_for_display
+    @display_data[:date] = "Forecast - #{@weather_data[:date]}"
+    @display_data[:headline] = "#{@weather_data[:headline]}."
+    @display_data[:temp] = "Today's high is #{@weather_data[:high]}°. The low is #{@weather_data[:low]}°."
+
+    activities = []
+    @display_data[:activities] = @activity_data.each { |k, v|
+      activities << "#{k.to_s.tr('_', ' ').capitalize}: #{v}"
+    }
+
+    @display_data[:activities] = activities.join(' ')
+  end
+
   private
 
   def parse_weather_forecast(body)
-    date = DateTime.strptime(body[:Date]).strftime("%a %-m/%-d/%-y")
+    date = DateTime.strptime(body[:Date]).strftime("%A %-m/%-d/%-y")
     headline = body[:Day][:LongPhrase]
-    temp_max = body[:Temperature][:Maximum][:Value]
-    temp_min = body[:Temperature][:Minimum][:Value]
+    temp_max = body[:Temperature][:Maximum][:Value].to_int
+    temp_min = body[:Temperature][:Minimum][:Value].to_int
     pollens = []
-    raw_pollens = body[:AirAndPollen].each {
+
+    body[:AirAndPollen].each {
       |i| pollens.push(i.slice(:Name, :Category))
     }
 
     {
-      date: "Today's forecast: #{date}",
+      date: date.to_s,
       headline: headline,
-      high: "High: #{temp_max}",
-      low: "Low: #{temp_min}",
+      high: temp_max.to_s,
+      low: temp_min.to_s,
 
       }
   end
@@ -65,7 +82,7 @@ class WeatherReport
       formatted_data[i[:Name]] = i[:Text] if keys_of_interest.include?(i[:Name])
     end
 
-    formatted_data.transform_keys { |k| k.downcase.tr(' ', '_').to_sym}
+    formatted_data.transform_keys { |k| k.downcase.gsub('forecast', '').strip.tr(' ', '_').to_sym }
   end
 
   def fetch_api_data(endpoint)
