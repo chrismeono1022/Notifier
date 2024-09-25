@@ -8,27 +8,29 @@ class CovidReport
     @state = state
     @state_level_data = {}
     @circulating_variants = {}
-    @comparison_data = []
+    @comparison_data = {}
+    @display_data = {}
   end
 
   def create_covid_report
     fetch_state_level_data
     fetch_circulating_variants
     fetch_comparison_data
+    format_for_display
   end
 
   def fetch_state_level_data
 
     data = fetch_cdc_data('https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateMap.json')
 
-    @state_level_data = data.select { |i| i[:State] == @state }
+    @state_level_data = data.select { |i| i[:State] == @state }.first.transform_keys(&:downcase)
   end
 
   def fetch_circulating_variants
     data = fetch_cdc_data('https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSVariantBarChart.json').last
 
     @circulating_variants[:date] = Date.parse(data[:week_end]).strftime(
-      "%a %m/%d/%y"
+      "%A %m/%d/%y"
     )
 
     variants = []
@@ -51,7 +53,7 @@ class CovidReport
       k[:State] == @state && k[:date_period] == '6 Months'
     }.each do | k |
       most_recent_data << OpenStruct.new(
-        date: Date.parse(k[:date]).strftime("%a %m/%d/%y"),
+        date: Date.parse(k[:date]).strftime("%A %m/%d/%y"),
         state_value: k[:state_med_conc].to_f.truncate(2),
         region_value: k[:region_value].to_f.truncate(2),
         national_value: k[:national_value].to_f.truncate(2),
@@ -59,7 +61,25 @@ class CovidReport
       )
     end
 
-    @comparison_data = most_recent_data.sort_by { |k| k.date }.last(2)
+    most_recent_data.sort_by! { |k| k.date }
+
+    @comparison_data = { last_week: most_recent_data[-2], current_week: most_recent_data[-1] }
+  end
+
+  def format_for_display
+    @display_data[:overview] = "The covid activity level in #{@state_level_data[:state]} is #{@state_level_data[:activity_level]} - #{@state_level_data[:activity_level_label]}."
+
+    comparison = ['This is how the numbers are trending: ']
+    comparison << "#{@comparison_data[:current_week].date} - Covid activity: #{@comparison_data[:current_week].activity_level} - #{@state}: #{@comparison_data[:current_week].state_value} - Region: #{@comparison_data[:current_week].region_value} - National: #{@comparison_data[:current_week].national_value}"
+
+    comparison << "#{@comparison_data[:last_week].date} - Covid activity: #{@comparison_data[:last_week].activity_level} - #{@state}: #{@comparison_data[:last_week].state_value} - Region: #{@comparison_data[:last_week].region_value} - National: #{@comparison_data[:last_week].national_value}"
+
+    @display_data[:comparison] = comparison.join(' ')
+
+    variants = ['The most recent variants']
+    @circulating_variants[:variants].last(3).each { |i| variants << " - #{i.name}: #{i.value}" }
+
+    @display_data[:variants] = variants.join('')
   end
 
   private
