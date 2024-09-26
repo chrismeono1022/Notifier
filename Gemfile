@@ -2,6 +2,5 @@
 
 source "https://rubygems.org"
 
-gem 'mailgun-ruby', '~>1.2.14'
-
+gem 'mail'
 gem 'pry', '~> 0.14.2', group: :development

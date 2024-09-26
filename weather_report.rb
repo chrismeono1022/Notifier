@@ -45,7 +45,7 @@ class WeatherReport
       activities << "#{k.to_s.tr('_', ' ').capitalize}: #{v}"
     }
 
-    @display_data[:activities] = activities.join(' ')
+    @display_data[:activities] = activities.join("\n")
   end
 
   private

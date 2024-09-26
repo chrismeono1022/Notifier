@@ -1,21 +1,37 @@
 require_relative'./lib/utils'
 require_relative 'weather_report'
 require_relative 'covid_report'
+require 'mail'
 
 class Notifier
+  def send_daily_report
+    covid = CovidReport.new('Oregon')
 
-  # extract daily report class from here
-  def create_daily_report
+    covid.create_covid_report
+
     weather = WeatherReport.new('40924_PC')
 
     weather.create_weather_report
 
-    covid = CovidReport.new('Oregon')
+    email_body = []
 
-    covid.create_covid_report
+    weather.display_data.each { |k, v| email_body << v }
+
+    covid.display_data.each { |k, v| email_body << v }
+
+    email_report(weather.display_data[:date], email_body.join("\n\n"))
   end
 
-  def send_daily_report
+  private
 
+  def email_report(date, body)
+    mail = Mail.new
+    mail.content_type = 'text/plain'
+    mail.from = ENV['GMAIL_APP']
+    mail.to = ENV['REPORT_RECIPIENT']
+    mail.subject = "#{date} - Your covid weather report"
+    mail.body = body
+
+    mail.deliver
   end
 end
