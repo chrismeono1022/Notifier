@@ -4,12 +4,19 @@ require_relative 'covid_report'
 require 'mail'
 
 class Notifier
+  attr :state, :zipcode
+
+  def initialize(state = 'Oregon', zipcode = '90291')
+    @state = state
+    @zipcode = zipcode
+  end
+
   def send_daily_report
-    covid = CovidReport.new('Oregon')
+    covid = CovidReport.new(@state)
 
     covid.create_covid_report
 
-    weather = WeatherReport.new('40924_PC')
+    weather = WeatherReport.new(@zipcode)
 
     weather.create_weather_report
 

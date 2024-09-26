@@ -2,16 +2,19 @@ require_relative 'lib/utils'
 
 class WeatherReport
 
-  attr :location, :weather_data, :activity_data, :display_data
+  attr :zip_code, :location, :weather_data, :activity_data, :display_data
 
-  def initialize(location)
-    @location = location
+  def initialize(zip_code)
+    @zip_code = zip_code
     @weather_data = {}
     @activity_data = {}
     @display_data = {}
+    @location = ''
   end
 
   def create_weather_report
+    lookup_location_key
+
     fetch_weather_forecast
 
     fetch_activity_forecast
@@ -21,7 +24,7 @@ class WeatherReport
 
   def fetch_weather_forecast
     url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/#{@location}"
-    res_body = fetch_api_data(url)
+    res_body = fetch_api_data(url, { details: true })
 
     body = res_body[:DailyForecasts].first
 
@@ -30,7 +33,7 @@ class WeatherReport
 
   def fetch_activity_forecast
     url = "http://dataservice.accuweather.com/indices/v1/daily/1day/#{@location}"
-    res_body = fetch_api_data(url)
+    res_body = fetch_api_data(url, { details: true })
 
     @activity_data = parse_activity_forecast(res_body)
   end
@@ -49,6 +52,14 @@ class WeatherReport
   end
 
   private
+
+  def lookup_location_key
+    url = "http://dataservice.accuweather.com/locations/v1/search?q=#{@zip_code}"
+
+    res_body = fetch_api_data(url, { q: @zip_code })
+
+    @location = res_body.first[:Key]
+  end
 
   def parse_weather_forecast(body)
     date = DateTime.strptime(body[:Date]).strftime("%A %-m/%-d/%-y")
@@ -85,13 +96,14 @@ class WeatherReport
     formatted_data.transform_keys { |k| k.downcase.gsub('forecast', '').strip.tr(' ', '_').to_sym }
   end
 
-  def fetch_api_data(endpoint)
+  def fetch_api_data(endpoint, additional_params = {})
     url = URI(endpoint)
-    params = { apikey: ENV['ACCUWEATHER_API_KEY'], details: true }
+    params = { apikey: ENV['ACCUWEATHER_API_KEY'] }.merge(additional_params)
 
     url.query = URI.encode_www_form(params)
 
     res = Net::HTTP.get_response(url)
+
     JSON.parse(res.body, symbolize_names: true)
   end
 end
