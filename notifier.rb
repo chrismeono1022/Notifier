@@ -6,24 +6,20 @@ require 'mail'
 class Notifier
   attr :state, :zipcode
 
-  def initialize(state = 'Oregon', zipcode = '90291')
+  def initialize(state = 'Oregon', zipcode = '97232')
     @state = state
     @zipcode = zipcode
   end
 
   def send_daily_report
     covid = CovidReport.new(@state)
-
     covid.create_covid_report
 
     weather = WeatherReport.new(@zipcode)
-
     weather.create_weather_report
 
     email_body = []
-
     weather.display_data.each { |k, v| email_body << v }
-
     covid.display_data.each { |k, v| email_body << v }
 
     email_report(weather.display_data[:date], email_body.join("\n\n"))
