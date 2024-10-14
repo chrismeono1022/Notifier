@@ -63,9 +63,10 @@ class WeatherReport
 
   def parse_weather_forecast(body)
     date = DateTime.strptime(body[:Date]).strftime("%A %-m/%-d/%-y")
+
     headline = body[:Day][:LongPhrase]
-    temp_max = body[:Temperature][:Maximum][:Value].to_int
-    temp_min = body[:Temperature][:Minimum][:Value].to_int
+    temp_max = body[:Temperature][:Maximum][:Value].to_s
+    temp_min = body[:Temperature][:Minimum][:Value].to_s
     pollens = []
 
     body[:AirAndPollen].each {
@@ -73,10 +74,10 @@ class WeatherReport
     }
 
     {
-      date: date.to_s,
+      date: date,
       headline: headline,
-      high: temp_max.to_s,
-      low: temp_min.to_s,
+      high: temp_max,
+      low: temp_min,
 
       }
   end
