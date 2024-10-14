@@ -2,7 +2,7 @@ require_relative 'lib/utils'
 
 class CovidReport
 
-  attr :state, :state_level_data, :circulating_variants, :comparison_data, :display_data
+  attr_reader :state, :state_level_data, :circulating_variants, :comparison_data, :display_data
 
   def initialize(state)
     @state = state
@@ -18,6 +18,8 @@ class CovidReport
     fetch_comparison_data
     format_for_display
   end
+
+  private
 
   def fetch_state_level_data
 
@@ -67,22 +69,20 @@ class CovidReport
   end
 
   def format_for_display
-    @display_data[:overview] = "The covid activity level in #{@state_level_data[:state]} is #{@state_level_data[:activity_level]} - #{@state_level_data[:activity_level_label]}."
+    @display_data[:overview] = "The covid activity level in #{state_level_data[:state]} is #{state_level_data[:activity_level]} - #{state_level_data[:activity_level_label]}."
 
     comparison = ['This is how the numbers are trending: ']
-    comparison << "#{@comparison_data[:current_week].date} - Covid activity: #{@comparison_data[:current_week].activity_level} - #{@state}: #{@comparison_data[:current_week].state_value} - Region: #{@comparison_data[:current_week].region_value} - National: #{@comparison_data[:current_week].national_value}"
+    comparison << "#{comparison_data[:current_week].date} - Covid activity: #{comparison_data[:current_week].activity_level} - #{@state}: #{comparison_data[:current_week].state_value} - Region: #{comparison_data[:current_week].region_value} - National: #{comparison_data[:current_week].national_value}"
 
-    comparison << "#{@comparison_data[:last_week].date} - Covid activity: #{@comparison_data[:last_week].activity_level} - #{@state}: #{@comparison_data[:last_week].state_value} - Region: #{@comparison_data[:last_week].region_value} - National: #{@comparison_data[:last_week].national_value}"
+    comparison << "#{comparison_data[:last_week].date} - Covid activity: #{comparison_data[:last_week].activity_level} - #{@state}: #{comparison_data[:last_week].state_value} - Region: #{comparison_data[:last_week].region_value} - National: #{comparison_data[:last_week].national_value}"
 
     @display_data[:comparison] = comparison.join("\n")
 
     variants = ['The most recent variants']
-    @circulating_variants[:variants].last(3).each { |i| variants << " - variant #{i.name}: #{i.value}%" }
+    circulating_variants[:variants].last(3).each { |i| variants << " - variant #{i.name}: #{i.value}%" }
 
     @display_data[:variants] = variants.join('')
   end
-
-  private
 
   # Strip BOM characters before parsing
   def fetch_cdc_data(url)

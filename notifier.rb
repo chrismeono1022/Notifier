@@ -4,7 +4,7 @@ require_relative 'covid_report'
 require 'mail'
 
 class Notifier
-  attr :state, :zipcode
+  attr_reader :state, :zipcode
 
   def initialize(state = 'Oregon', zipcode = '97232')
     @state = state
