@@ -11,6 +11,6 @@ This is my first pass; I am in the process of incorporating tests and doing some
 
 ![Example](./email_screenshot.png)
 
-I run this as a daily cron job and review it as I get my day started.
+I run this as a daily launchd job and review it as I get my day started.
 
 In the future, I may add more detailed Flu data and include RSV numbers, but for now this is sufficient.
