@@ -22,6 +22,8 @@ class WeatherReport
     format_for_display
   end
 
+  private
+
   def fetch_weather_forecast
     url = "https://dataservice.accuweather.com/forecasts/v1/daily/1day/#{@location}"
     res_body = fetch_api_data(url, { details: true })
@@ -50,8 +52,6 @@ class WeatherReport
 
     @display_data[:activities] = activities.join("\n")
   end
-
-  private
 
   def lookup_location_key
     url = "http://dataservice.accuweather.com/locations/v1/search?q=#{@zip_code}"
