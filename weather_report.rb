@@ -4,6 +4,12 @@ class WeatherReport
   LOCATION_KEY_URL = 'http://dataservice.accuweather.com/locations/v1/search?q='
   DAILY_WEATHER_URL = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day/'
   DAILY_ACTIVITIES_URL = 'http://dataservice.accuweather.com/indices/v1/daily/1day/'
+  KEYS_OF_INTEREST = [
+    'Mosquito Activity Forecast', 'Dust & Dander Forecast',
+    'Arthritis Pain Forecast', 'Flu Forecast', 'Sinus Headache Forecast',
+    'Driving Travel Index', 'Hair Frizz Forecast',
+    'Dog Walking Comfort Forecast', 'Makeup and Skincare Forecast'
+  ]
 
   attr_reader :zip_code, :location, :weather_data, :activity_data, :display_data
 
@@ -88,15 +94,10 @@ class WeatherReport
   end
 
   def parse_activity_forecast(body)
-    keys_of_interest = ['Mosquito Activity Forecast', 'Dust & Dander Forecast',
-      'Arthritis Pain Forecast', 'Flu Forecast', 'Sinus Headache Forecast',
-      'Driving Travel Index', 'Hair Frizz Forecast',
-      'Dog Walking Comfort Forecast', 'Makeup and Skincare Forecast']
-
     formatted_data = {}
 
     body.each do |i|
-      formatted_data[i[:Name]] = i[:Text] if keys_of_interest.include?(i[:Name])
+      formatted_data[i[:Name]] = i[:Text] if KEYS_OF_INTEREST.include?(i[:Name])
     end
 
     formatted_data.transform_keys { |k| k.downcase.gsub('forecast', '').strip.tr(' ', '_').to_sym }
