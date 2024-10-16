@@ -1,6 +1,9 @@
 require_relative 'lib/utils'
 
 class CovidReport
+  STATE_LEVEL_DATA_URL = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateMap.json'
+  CIRCULATING_VARIANTS_URL = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSVariantBarChart.json'
+  COMPARISON_DATA_URL = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateLevel.json'
 
   attr_reader :state, :state_level_data, :circulating_variants, :comparison_data, :display_data
 
@@ -22,14 +25,13 @@ class CovidReport
   private
 
   def fetch_state_level_data
-
-    data = fetch_cdc_data('https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateMap.json')
+    data = fetch_cdc_data(STATE_LEVEL_DATA_URL)
 
     @state_level_data = data.select { |i| i[:State] == @state }.first.transform_keys(&:downcase)
   end
 
   def fetch_circulating_variants
-    data = fetch_cdc_data('https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSVariantBarChart.json').last
+    data = fetch_cdc_data(CIRCULATING_VARIANTS_URL).last
 
     @circulating_variants[:date] = Date.parse(data[:week_end]).strftime(
       "%A %m/%d/%y"
@@ -47,7 +49,7 @@ class CovidReport
   end
 
   def fetch_comparison_data
-    data = fetch_cdc_data('https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateLevel.json')
+    data = fetch_cdc_data(COMPARISON_DATA_URL)
 
     most_recent_data = []
 
