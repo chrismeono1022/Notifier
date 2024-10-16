@@ -65,32 +65,32 @@ class WeatherReport
     @display_data[:temp] = "Today's high is #{weather_data[:high]}°. The low is #{weather_data[:low]}°."
 
     activities = []
-    @display_data[:activities] = activity_data.each { |k, v|
+    @display_data[:activities] = activity_data.each do |k, v|
       activities << "#{k.to_s.tr('_', ' ').capitalize}: #{v}"
-    }
+    end
 
     @display_data[:activities] = activities.join("\n")
   end
 
   def parse_weather_forecast(body)
-    date = DateTime.strptime(body[:Date]).strftime("%A %-m/%-d/%-y")
+    date = DateTime.strptime(body[:Date]).strftime('%A %-m/%-d/%-y')
 
     headline = body[:Day][:LongPhrase]
     temp_max = body[:Temperature][:Maximum][:Value].to_s
     temp_min = body[:Temperature][:Minimum][:Value].to_s
     pollens = []
 
-    body[:AirAndPollen].each {
-      |i| pollens.push(i.slice(:Name, :Category))
-    }
+    body[:AirAndPollen].each do |i|
+      pollens.push(i.slice(:Name, :Category))
+    end
 
     {
       date: date,
       headline: headline,
       high: temp_max,
-      low: temp_min,
+      low: temp_min
 
-      }
+    }
   end
 
   def parse_activity_forecast(body)

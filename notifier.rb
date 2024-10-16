@@ -1,4 +1,4 @@
-require_relative'./lib/utils'
+require_relative './lib/utils'
 require_relative 'weather_report'
 require_relative 'covid_report'
 require 'mail'
@@ -19,8 +19,8 @@ class Notifier
     weather.create_weather_report
 
     email_body = []
-    weather.display_data.each { |k, v| email_body << v }
-    covid.display_data.each { |k, v| email_body << v }
+    weather.display_data.each { |_k, v| email_body << v }
+    covid.display_data.each { |_k, v| email_body << v }
 
     email_report(weather.display_data[:date], email_body.join("\n\n"))
   end

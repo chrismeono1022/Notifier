@@ -2,9 +2,7 @@ require 'dotenv'
 Dotenv.load('keys.env')
 require 'dotenv/load'
 
-if ENV['NOTIFIER'] == 'development'
-  require 'pry'
-end
+require 'pry' if ENV['NOTIFIER'] == 'development'
 
 require 'uri'
 require 'net/http'
@@ -14,11 +12,11 @@ require 'Date'
 require 'mail'
 
 mail_opts = {
-  address:    'smtp.gmail.com',
-  port:       587,
-  domain:     'gmail.com',
-  user_name:  ENV['GMAIL_APP'],
-  password:   ENV['GMAIL_APP_VALUE'],
+  address: 'smtp.gmail.com',
+  port: 587,
+  domain: 'gmail.com',
+  user_name: ENV['GMAIL_APP'],
+  password: ENV['GMAIL_APP_VALUE'],
   authentication: 'plain',
   enable_starttls_auto: true
 }
