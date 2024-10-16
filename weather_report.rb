@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/utils'
 
 class WeatherReport
@@ -9,7 +11,7 @@ class WeatherReport
     'Arthritis Pain Forecast', 'Flu Forecast', 'Sinus Headache Forecast',
     'Driving Travel Index', 'Hair Frizz Forecast',
     'Dog Walking Comfort Forecast', 'Makeup and Skincare Forecast'
-  ]
+  ].freeze
 
   attr_reader :zip_code, :location, :weather_data, :activity_data, :display_data
 

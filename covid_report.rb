@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/utils'
 
 class CovidReport
@@ -43,7 +45,7 @@ class CovidReport
       variants << OpenStruct.new(name: k, value: v.to_f) if !v.nil? && k != :week_end
     end
 
-    @circulating_variants[:variants] = variants.sort_by { |i| i.value }
+    @circulating_variants[:variants] = variants.sort_by(&:value)
   end
 
   def fetch_comparison_data
@@ -63,7 +65,7 @@ class CovidReport
       )
     end
 
-    most_recent_data.sort_by! { |k| k.date }
+    most_recent_data.sort_by!(&:date)
 
     @comparison_data = { last_week: most_recent_data[-2], current_week: most_recent_data[-1] }
   end
