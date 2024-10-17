@@ -19,8 +19,11 @@ class CovidReport
 
   def create_covid_report
     fetch_state_level_data
+
     fetch_circulating_variants
+
     fetch_comparison_data
+
     format_for_display
   end
 

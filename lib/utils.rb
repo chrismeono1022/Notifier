@@ -3,14 +3,11 @@
 require 'dotenv'
 Dotenv.load('keys.env')
 require 'dotenv/load'
-
 require 'pry' if ENV['NOTIFIER'] == 'development'
-
 require 'uri'
 require 'net/http'
 require 'JSON'
 require 'Date'
-
 require 'mail'
 
 mail_opts = {
