@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'utils'
 
 # Helpers to interact with CDC API
@@ -7,7 +9,7 @@ module CDC
   COMPARISON_DATA_URL = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateLevel.json'
   COMPARISON_DATA_WINDOW = '6 Months'
 
-# Strip BOM characters before parsing
+  # Strip BOM characters before parsing
   def fetch(url)
     url = URI(url)
 

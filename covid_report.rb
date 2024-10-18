@@ -4,10 +4,11 @@ require_relative 'lib/utils'
 require_relative 'lib/cdc'
 require_relative 'covid_models'
 
+# Create a covid report, uses CDC API via CDC module
 class CovidReport
   include CDC
 
-  attr_reader :state, :state_data, :circulating_variants, :state_overview_data, :report,
+  attr_reader :state, :state_data, :circulating_variants, :state_overview_data, :report
 
   def initialize(state)
     @state = state
@@ -34,7 +35,7 @@ class CovidReport
     data = fetch(STATE_LEVEL_DATA_URL)
 
     selected_state = data.select { |result| result[:State] == state }.first
-      .transform_keys(&:downcase)
+                         .transform_keys(&:downcase)
 
     @state_data = StateOverview.new(
       name: selected_state[:state],

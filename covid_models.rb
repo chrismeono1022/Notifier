@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'lib/utils'
 
+# represents Covid Variant from CDC API, usually part of a collection
 class CovidVariant
   attr_reader :name, :value, :date
 
@@ -10,6 +13,7 @@ class CovidVariant
   end
 end
 
+# represents current State data from CDC API, used as a single obj
 class StateOverview
   attr_reader :name, :level, :label
 
@@ -20,11 +24,12 @@ class StateOverview
   end
 end
 
+# represents detailed State covid data, usually part of a collection
 class StateDetailed
   attr_reader :name, :level, :label, :date, :state_level, :national_level, :region_level
 
-  def initialize(name: '', level: '', label: '', date: Date.today, state_level: 0,
-    national_level: 0, region_level: 0)
+  def initialize(name: '', level: '', label: '', date: Date.today,
+                 state_level: 0, national_level: 0, region_level: 0)
     @name = name
     @level = level
     @label = label
