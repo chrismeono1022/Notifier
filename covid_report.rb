@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 
 require_relative 'lib/utils'
+require_relative 'lib/cdc'
+require_relative 'covid_models'
 
 class CovidReport
-  STATE_LEVEL_DATA_URL = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateMap.json'
-  CIRCULATING_VARIANTS_URL = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSVariantBarChart.json'
-  COMPARISON_DATA_URL = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateLevel.json'
+  include CDC
 
-  attr_reader :state, :state_level_data, :circulating_variants, :comparison_data, :display_data
+  attr_reader :state, :state_data, :circulating_variants, :state_overview_data, :report,
 
   def initialize(state)
     @state = state
     @state_level_data = {}
-    @circulating_variants = {}
-    @comparison_data = {}
+    @circulating_variants = []
+    @state_overview_data = {}
+    @comparison_data = []
     @display_data = {}
   end
 
@@ -30,72 +31,86 @@ class CovidReport
   private
 
   def fetch_state_level_data
-    data = fetch_cdc_data(STATE_LEVEL_DATA_URL)
+    data = fetch(STATE_LEVEL_DATA_URL)
 
-    @state_level_data = data.select { |i| i[:State] == @state }.first.transform_keys(&:downcase)
+    selected_state = data.select { |result| result[:State] == state }.first
+      .transform_keys(&:downcase)
+
+    @state_data = StateOverview.new(
+      name: selected_state[:state],
+      level: selected_state[:activity_level],
+      label: selected_state[:activity_level_label]
+    )
   end
 
   def fetch_circulating_variants
-    data = fetch_cdc_data(CIRCULATING_VARIANTS_URL).last
+    data = fetch(CIRCULATING_VARIANTS_URL).last
 
-    @circulating_variants[:date] = Date.parse(data[:week_end]).strftime(
-      '%A %m/%d/%y'
-    )
+    date = Date.parse(data[:week_end])
 
     variants = []
 
-    data.select do |k, v|
-      variants << OpenStruct.new(name: k, value: v.to_f) if !v.nil? && k != :week_end
-    end
+    data.each do |key, value|
+      next if value.nil?
+      next if key == :week_end
 
-    @circulating_variants[:variants] = variants.sort_by(&:value)
-  end
-
-  def fetch_comparison_data
-    data = fetch_cdc_data(COMPARISON_DATA_URL)
-
-    most_recent_data = []
-
-    data.select do |k|
-      k[:State] == @state && k[:date_period] == '6 Months'
-    end.each do |k|
-      most_recent_data << OpenStruct.new(
-        date: Date.parse(k[:date]).strftime('%A %m/%d/%y'),
-        state_value: k[:state_med_conc].to_f.truncate(2),
-        region_value: k[:region_value].to_f.truncate(2),
-        national_value: k[:national_value].to_f.truncate(2),
-        activity_level: k[:activity_level_label]
+      variants << CovidVariant.new(
+        name: key,
+        value: value,
+        date: date
       )
     end
 
-    most_recent_data.sort_by!(&:date)
+    @circulating_variants = variants.sort_by(&:value).reverse
+  end
 
-    @comparison_data = { last_week: most_recent_data[-2], current_week: most_recent_data[-1] }
+  def fetch_comparison_data
+    data = fetch(COMPARISON_DATA_URL)
+
+    comparison_data = data.select do |result|
+      result[:State] == state && result[:date_period] == COMPARISON_DATA_WINDOW
+    end
+
+    data_of_interest = []
+
+    comparison_data.each do |data|
+      data_of_interest << StateDetailed.new(
+        name: data[:State],
+        level: data[:activity_level],
+        label: data[:activity_level_label],
+        date: Date.parse(data[:date]),
+        state_level: data[:state_med_conc],
+        national_level: data[:national_value],
+        region_level: data[:region_value]
+      )
+    end
+
+    @state_overview_data = data_of_interest.sort_by(&:date)
   end
 
   def format_for_display
-    @display_data[:overview] =
-      "The covid activity level in #{state_level_data[:state]} is #{state_level_data[:activity_level]} - #{state_level_data[:activity_level_label]}."
+    formatted_data = []
 
-    comparison = ['This is how the numbers are trending: ']
-    comparison << "#{comparison_data[:current_week].date} - Covid activity: #{comparison_data[:current_week].activity_level} - #{@state}: #{comparison_data[:current_week].state_value} - Region: #{comparison_data[:current_week].region_value} - National: #{comparison_data[:current_week].national_value}"
+    formatted_data << "The covid activity level in #{state_data.name} is #{state_data.level} - #{state_data.label}."
 
-    comparison << "#{comparison_data[:last_week].date} - Covid activity: #{comparison_data[:last_week].activity_level} - #{@state}: #{comparison_data[:last_week].state_value} - Region: #{comparison_data[:last_week].region_value} - National: #{comparison_data[:last_week].national_value}"
+    last_week = state_overview_data[-2]
+    current_week = state_overview_data[-1]
 
-    @display_data[:comparison] = comparison.join("\n")
+    formatted_data << 'This is how the numbers are trending:'
+    formatted_data << "#{current_week.date} - Covid Activity"
+    formatted_data << "#{current_week.name}: #{current_week.state_level}"
+    formatted_data << "Region: #{current_week.region_level}"
+    formatted_data << "Nation: #{current_week.national_level}"
 
-    variants = ['The most recent variants']
-    circulating_variants[:variants].last(3).each { |i| variants << " - variant #{i.name}: #{i.value}%" }
+    formatted_data << "#{last_week.date} - Covid Activity"
+    formatted_data << "#{last_week.name}: #{last_week.state_level}"
+    formatted_data << "Region: #{last_week.region_level}"
+    formatted_data << "Nation: #{last_week.national_level}"
 
-    @display_data[:variants] = variants.join('')
-  end
+    formatted_data << 'The most recent variants:'
 
-  # Strip BOM characters before parsing
-  def fetch_cdc_data(url)
-    url = URI(url)
+    circulating_variants.last(3).each { |variant| formatted_data << "#{variant.name}: #{variant.value}%" }
 
-    res = Net::HTTP.get_response(url)
-
-    JSON.parse(res.body.gsub("\xEF\xBB\xBF", ''), symbolize_names: true)
+    @report = formatted_data.join("\n")
   end
 end
