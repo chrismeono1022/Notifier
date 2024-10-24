@@ -86,9 +86,15 @@ class WeatherReport
   def format_for_display
     formatted_data = []
 
-    formatted_data << "Forecast for #{weather_forecast.date}"
-    formatted_data << weather_forecast.headline.to_s
-    formatted_data << "Today's high is #{weather_forecast.max}. Today's low is #{weather_forecast.min}."
+    formatted_data << "Forecast for #{weather_forecast.date} - #{weather_forecast.headline}."
+    formatted_data << "Today's high is #{weather_forecast.max}. Today's low is #{weather_forecast.min}.\n"
+
+    formatted_data << "Today's pollens are: "
+    weather_forecast.pollens.each do |pollen|
+      formatted_data << "#{pollen.name}: #{pollen.level}"
+    end
+
+    formatted_data << "\n"
 
     activities_forecast.each do |activity|
       formatted_data << "#{activity.name}: #{activity.headline}"

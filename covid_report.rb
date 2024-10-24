@@ -102,12 +102,12 @@ class CovidReport
     formatted_data << "#{current_week.date} - Covid Activity"
     formatted_data << "#{current_week.name}: #{current_week.state_level}"
     formatted_data << "Region: #{current_week.region_level}"
-    formatted_data << "Nation: #{current_week.national_level}"
+    formatted_data << "Nation: #{current_week.national_level}\n"
 
     formatted_data << "#{last_week.date} - Covid Activity"
     formatted_data << "#{last_week.name}: #{last_week.state_level}"
     formatted_data << "Region: #{last_week.region_level}"
-    formatted_data << "Nation: #{last_week.national_level}"
+    formatted_data << "Nation: #{last_week.national_level}\n"
 
     formatted_data << 'The most recent variants:'
 
