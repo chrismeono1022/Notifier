@@ -5,6 +5,7 @@ require_relative 'weather_report'
 require_relative 'covid_report'
 require 'mail'
 
+# Calls appropriate APIs to create and send the daily report
 class Notifier
   attr_reader :state, :zipcode
 
@@ -14,17 +15,16 @@ class Notifier
   end
 
   def send_daily_report
-    covid = CovidReport.new(@state)
-    covid.create_covid_report
-
-    weather = WeatherReport.new(@zipcode)
+    weather = WeatherReport.new(zipcode)
     weather.create_weather_report
 
-    email_body = []
-    weather.display_data.each_value { |v| email_body << v }
-    covid.display_data.each_value { |v| email_body << v }
+    covid = CovidReport.new(state)
+    covid.create_covid_report
 
-    email_report(weather.display_data[:date], email_body.join("\n\n"))
+    email_report(
+      weather.weather_forecast.date,
+      [weather.report, covid.report].join("\n\n")
+    )
   end
 
   private
