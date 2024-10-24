@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'lib/utils'
+require_relative '../lib/utils'
 
 # represents daily weather forecast from AccuWeather, used as a single obj
 class WeatherForecast

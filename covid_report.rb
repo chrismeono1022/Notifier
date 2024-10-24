@@ -2,7 +2,7 @@
 
 require_relative 'lib/utils'
 require_relative 'lib/cdc'
-require_relative 'covid_models'
+require_relative 'models/covid_models'
 
 # Create a covid report, uses CDC API via CDC module
 class CovidReport

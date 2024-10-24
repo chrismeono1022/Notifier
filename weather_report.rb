@@ -2,7 +2,7 @@
 
 require_relative 'lib/utils'
 require_relative 'lib/accuweather'
-require_relative 'weather_models'
+require_relative 'models/weather_models'
 
 # Create weather report, uses AccuWeather API via Accuweather module
 class WeatherReport

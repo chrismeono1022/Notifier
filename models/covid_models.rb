@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'lib/utils'
+require_relative '../lib/utils'
 
 # represents Covid Variant from CDC API, usually part of a collection
 class CovidVariant
