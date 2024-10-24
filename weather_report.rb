@@ -1,26 +1,20 @@
 # frozen_string_literal: true
 
 require_relative 'lib/utils'
+require_relative 'lib/accuweather'
+require_relative 'weather_models'
 
+# Create weather report, uses AccuWeather API via Accuweather module
 class WeatherReport
-  LOCATION_KEY_URL = 'http://dataservice.accuweather.com/locations/v1/search?q='
-  DAILY_WEATHER_URL = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day/'
-  DAILY_ACTIVITIES_URL = 'http://dataservice.accuweather.com/indices/v1/daily/1day/'
-  KEYS_OF_INTEREST = [
-    'Mosquito Activity Forecast', 'Dust & Dander Forecast',
-    'Arthritis Pain Forecast', 'Flu Forecast', 'Sinus Headache Forecast',
-    'Driving Travel Index', 'Hair Frizz Forecast',
-    'Dog Walking Comfort Forecast', 'Makeup and Skincare Forecast'
-  ].freeze
+  include AccuWeather
 
-  attr_reader :zip_code, :location, :weather_data, :activity_data, :display_data
+  attr_reader :zip_code, :location_key, :weather_forecast, :activities_forecast, :report
 
   def initialize(zip_code)
     @zip_code = zip_code
-    @weather_data = {}
-    @activity_data = {}
-    @display_data = {}
-    @location = ''
+    @location_key = ''
+    @weather_forecast = {}
+    @activities_forecast = []
   end
 
   def create_weather_report
@@ -28,7 +22,7 @@ class WeatherReport
 
     fetch_weather_forecast
 
-    fetch_activity_forecast
+    fetch_activities_forecast
 
     format_for_display
   end
@@ -38,81 +32,68 @@ class WeatherReport
   def lookup_location_key
     url = "#{LOCATION_KEY_URL}#{zip_code}"
 
-    res_body = fetch_api_data(url, { q: zip_code })
+    res = fetch(url, { q: zip_code })
 
-    @location = res_body.first[:Key]
+    @location_key = res.first[:Key]
   end
 
   def fetch_weather_forecast
-    url = "#{DAILY_WEATHER_URL}#{location}"
+    url = "#{DAILY_WEATHER_URL}#{location_key}"
 
-    res_body = fetch_api_data(url, { details: true })
+    res = fetch(url, { details: true })
 
-    body = res_body[:DailyForecasts].first
+    body = res[:DailyForecasts].first
 
-    @weather_data = parse_weather_forecast(body)
-  end
-
-  def fetch_activity_forecast
-    url = "#{DAILY_ACTIVITIES_URL}#{location}"
-
-    res_body = fetch_api_data(url, { details: true })
-
-    @activity_data = parse_activity_forecast(res_body)
-  end
-
-  def format_for_display
-    @display_data[:date] = "Forecast - #{weather_data[:date]}"
-    @display_data[:headline] = "#{weather_data[:headline]}."
-    @display_data[:temp] = "Today's high is #{weather_data[:high]}°. The low is #{weather_data[:low]}°."
-
-    activities = []
-    @display_data[:activities] = activity_data.each do |k, v|
-      activities << "#{k.to_s.tr('_', ' ').capitalize}: #{v}"
-    end
-
-    @display_data[:activities] = activities.join("\n")
+    parse_weather_forecast(body)
   end
 
   def parse_weather_forecast(body)
-    date = DateTime.strptime(body[:Date]).strftime('%A %-m/%-d/%-y')
+    daily_pollens = []
 
-    headline = body[:Day][:LongPhrase]
-    temp_max = body[:Temperature][:Maximum][:Value].to_s
-    temp_min = body[:Temperature][:Minimum][:Value].to_s
-    pollens = []
-
-    body[:AirAndPollen].each do |i|
-      pollens.push(i.slice(:Name, :Category))
+    body[:AirAndPollen].each do |pollen|
+      daily_pollens.push(Pollen.new(name: pollen[:Name], level: pollen[:Category]))
     end
 
-    {
-      date: date,
-      headline: headline,
-      high: temp_max,
-      low: temp_min
-
-    }
+    @weather_forecast = WeatherForecast.new(
+      date: DateTime.strptime(body[:Date]),
+      headline: body[:Day][:LongPhrase],
+      max: body[:Temperature][:Maximum][:Value],
+      min: body[:Temperature][:Minimum][:Value],
+      pollens: daily_pollens
+    )
   end
 
-  def parse_activity_forecast(body)
-    formatted_data = {}
+  def fetch_activities_forecast
+    url = "#{DAILY_ACTIVITIES_URL}#{location_key}"
 
-    body.each do |i|
-      formatted_data[i[:Name]] = i[:Text] if KEYS_OF_INTEREST.include?(i[:Name])
+    res_body = fetch(url, { details: true })
+
+    parse_activities_forecast(res_body)
+  end
+
+  def parse_activities_forecast(body)
+    body.each do |activity|
+      next unless KEYS_OF_INTEREST.include?(activity[:Name])
+
+      @activities_forecast.push(Activity.new(
+                                  name: activity[:Name],
+                                  value: activity[:Category],
+                                  headline: activity[:Text]
+                                ))
+    end
+  end
+
+  def format_for_display
+    formatted_data = []
+
+    formatted_data << "Forecast for #{weather_forecast.date}"
+    formatted_data << weather_forecast.headline.to_s
+    formatted_data << "Today's high is #{weather_forecast.max}. Today's low is #{weather_forecast.min}."
+
+    activities_forecast.each do |activity|
+      formatted_data << "#{activity.name}: #{activity.headline}"
     end
 
-    formatted_data.transform_keys { |k| k.downcase.gsub('forecast', '').strip.tr(' ', '_').to_sym }
-  end
-
-  def fetch_api_data(endpoint, additional_params = {})
-    url = URI(endpoint)
-    params = { apikey: ENV['ACCUWEATHER_API_KEY'] }.merge(additional_params)
-
-    url.query = URI.encode_www_form(params)
-
-    res = Net::HTTP.get_response(url)
-
-    JSON.parse(res.body, symbolize_names: true)
+    @report = formatted_data.join("\n")
   end
 end

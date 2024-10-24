@@ -24,7 +24,7 @@ class StateOverview
   end
 end
 
-# represents detailed State covid data, usually part of a collection
+# represents detailed State covid data, usually part of a collection, used to compare data over time
 class StateDetailed
   attr_reader :name, :level, :label, :date, :state_level, :national_level, :region_level
 

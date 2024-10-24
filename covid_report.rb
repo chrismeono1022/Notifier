@@ -8,7 +8,8 @@ require_relative 'covid_models'
 class CovidReport
   include CDC
 
-  attr_reader :state, :state_data, :circulating_variants, :state_overview_data, :report
+  attr_reader :state, :state_data, :circulating_variants, :state_overview_data,
+              :report
 
   def initialize(state)
     @state = state
