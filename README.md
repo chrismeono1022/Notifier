@@ -7,9 +7,9 @@ I created this because I was frustrated by the lack of transparency around covid
 
 I utilize AccuWeather for weather related information and the CDC for covid data.
 
-This is my first pass; I am in the process of incorporating tests and doing some code cleaup.
+This is my first pass; I am in the process of incorporating tests and improved error handling.
 
-![Example](./email_screenshot.png)
+![Example](./email.png)
 
 I run this as a daily launchd job and review it as I get my day started.
 
