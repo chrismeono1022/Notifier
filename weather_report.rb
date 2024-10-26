@@ -72,8 +72,12 @@ class WeatherReport
   end
 
   def parse_activities_forecast(body)
+    arthritis = body.select { |activity| activity[:Name] == 'Arthritis Pain Forecast' }.last
+
     body.each do |activity|
       next unless KEYS_OF_INTEREST.include?(activity[:Name])
+
+      next if activity[:Name] == 'Arthritis Pain Forecast'
 
       @activities_forecast.push(Activity.new(
                                   name: activity[:Name],
@@ -81,6 +85,14 @@ class WeatherReport
                                   headline: activity[:Text]
                                 ))
     end
+
+    @activities_forecast.push(
+      Activity.new(
+        name: arthritis[:Name],
+        value: arthritis[:Category],
+        headline: arthritis[:Text]
+      )
+    )
   end
 
   def format_for_display
