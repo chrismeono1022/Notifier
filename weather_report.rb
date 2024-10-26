@@ -10,8 +10,8 @@ class WeatherReport
 
   attr_reader :zip_code, :location_key, :weather_forecast, :activities_forecast, :report
 
-  def initialize(zipcode = '97232')
-    @zip_code = zip_code
+  def initialize(zipcode)
+    @zip_code = zipcode
     @location_key = ''
     @weather_forecast = {}
     @activities_forecast = []
