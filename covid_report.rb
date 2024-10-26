@@ -11,7 +11,7 @@ class CovidReport
   attr_reader :state, :state_data, :circulating_variants, :state_overview_data,
               :report
 
-  def initialize(state)
+  def initialize(state = 'Oregon')
     @state = state
     @state_level_data = {}
     @circulating_variants = []
