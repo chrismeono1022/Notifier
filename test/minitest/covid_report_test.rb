@@ -15,7 +15,7 @@ class CovidReportTest < Minitest::Test
 
     # stub API calls
     api_stubs = ->(uri) {
-      if uri == CovidReport::STATE_LEVEL_DATA_URL
+      if uri == CovidReport::STATE_LEVEL  _DATA_URL
         @state_level_data
       elsif uri == CovidReport::CIRCULATING_VARIANTS_URL
         @variant_data
@@ -27,12 +27,8 @@ class CovidReportTest < Minitest::Test
     covid.stub :fetch, api_stubs do
       covid.create_covid_report
 
-      # binding.pry
-
       assert_equal 'Very High', covid.state_data.label
       assert_equal '10', covid.state_data.level
-
-
     end
   end
 end
