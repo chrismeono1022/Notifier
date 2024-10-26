@@ -15,7 +15,7 @@ class CovidReportTest < Minitest::Test
 
     # stub API calls
     api_stubs = ->(uri) {
-      if uri == CovidReport::STATE_LEVEL  _DATA_URL
+      if uri == CovidReport::STATE_LEVEL_DATA_URL
         @state_level_data
       elsif uri == CovidReport::CIRCULATING_VARIANTS_URL
         @variant_data
