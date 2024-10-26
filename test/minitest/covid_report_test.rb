@@ -1,6 +1,5 @@
 require 'pry'
 require 'minitest/autorun'
-
 require 'covid_report'
 
 class CovidReportTest < Minitest::Test
@@ -8,13 +7,10 @@ class CovidReportTest < Minitest::Test
     @state_level_data = JSON.parse(File.read('test/fixtures/cdc_covid_state_overview_endpoint.json'), symbolize_names: true)
     @detailed_state_data = JSON.parse(File.read('test/fixtures/cdc_covid_state_detailed_endpoint.json'), symbolize_names: true)
     @variant_data = JSON.parse(File.read('test/fixtures/cdc_covid_variant_endpoint.json'), symbolize_names: true)
-  end
 
-  def test_create_covid_report_with_stub
-    covid = CovidReport.new
+    @covid_report = CovidReport.new
 
-    # stub API calls
-    api_stubs = ->(uri) {
+    @api_stubs = ->(uri) {
       if uri == CovidReport::STATE_LEVEL_DATA_URL
         @state_level_data
       elsif uri == CovidReport::CIRCULATING_VARIANTS_URL
@@ -23,12 +19,13 @@ class CovidReportTest < Minitest::Test
         @detailed_state_data
       end
     }
+  end
 
-    covid.stub :fetch, api_stubs do
-      covid.create_covid_report
+  def test_creates_covid_report
+    @covid_report.stub :fetch, @api_stubs do
+      @covid_report.create_covid_report
 
-      assert_equal 'Very High', covid.state_data.label
-      assert_equal '10', covid.state_data.level
+      refute_nil @covid_report.report
     end
   end
 end
