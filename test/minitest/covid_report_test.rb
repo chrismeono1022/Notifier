@@ -1,21 +1,26 @@
+# frozen_string_literal: true
+
 require 'pry'
 require 'minitest/autorun'
 require 'covid_report'
 
 class CovidReportTest < Minitest::Test
   def setup
-    @state_level_data = JSON.parse(File.read('test/fixtures/cdc_covid_state_overview_endpoint.json'), symbolize_names: true)
-    @detailed_state_data = JSON.parse(File.read('test/fixtures/cdc_covid_state_detailed_endpoint.json'), symbolize_names: true)
+    @state_level_data = JSON.parse(File.read('test/fixtures/cdc_covid_state_overview_endpoint.json'),
+                                   symbolize_names: true)
+    @detailed_state_data = JSON.parse(File.read('test/fixtures/cdc_covid_state_detailed_endpoint.json'),
+                                      symbolize_names: true)
     @variant_data = JSON.parse(File.read('test/fixtures/cdc_covid_variant_endpoint.json'), symbolize_names: true)
 
     @covid_report = CovidReport.new
 
-    @api_stubs = ->(uri) {
-      if uri == CovidReport::STATE_LEVEL_DATA_URL
+    @api_stubs = lambda { |uri|
+      case uri
+      when CovidReport::STATE_LEVEL_DATA_URL
         @state_level_data
-      elsif uri == CovidReport::CIRCULATING_VARIANTS_URL
+      when CovidReport::CIRCULATING_VARIANTS_URL
         @variant_data
-      elsif uri == CovidReport::COMPARISON_DATA_URL
+      when CovidReport::COMPARISON_DATA_URL
         @detailed_state_data
       end
     }
