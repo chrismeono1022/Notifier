@@ -16,8 +16,6 @@ class CovidReport
     @state_level_data = {}
     @circulating_variants = []
     @state_overview_data = {}
-    @comparison_data = []
-    @display_data = {}
   end
 
   def create_covid_report
